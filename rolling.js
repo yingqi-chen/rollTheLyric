@@ -2,30 +2,54 @@ const fs = require('fs')
 const log = require('single-line-log').stdout;
 
 const file = fs.readFile("./lyric.txt", (err,data)=>{
-    if(err) {
-        console.log(err)
-     } else{
-         printLyric(data.toString())
-     }
+  if(err) {
+      console.log(err)
+   } else{
+      start(data.toString())
+   }
 })
 
-function printLyric(lyric){
+function start(lyric){
+  process.stdout.write("Do you want to see all the lyric(compard to one line each time)? Y/N \n")
+  
+  process.stdin.on("data", data=>{
+    let answer = data.toString().trim().toUpperCase()
+    if (answer !== "Y" && answer !=="N"){
+      console.log("Not the answer I want.")
+      start()
+    }else{
+      printLyric(answer,lyric)
+    }
+  })
+}
+
+printLyric = (answer, lyric) =>{
+  console.log("Printing the Lyric...")
+
   const reg = /\[(\d{2})\:(\d{2})\.(\d{2})\]\s*(.+)/
   const lines = lyric.split("\n")
+
+  loopAllLines(answer,lines,reg)
+ 
+}
+
+function loopAllLines(answer,lines,reg){
+    
   for(let i = 0; i<lines.length; i++){
     let line = lines[i];
     let matches = reg.exec(line)
+    
     if(matches){
       let minute = parseFloat(matches[1])
       let second = parseFloat(matches[2])
       let millsecond = parseFloat(matches[3])
       let content = matches[4]
       let time = minute*60*1000 + second*1000 + millsecond
+      
       setTimeout(function(){
-        log(content)
-        log.clear()
+        answer==="Y"? console.log(content) : log(content)
       },time)
     }
   }
+} 
 
-}
