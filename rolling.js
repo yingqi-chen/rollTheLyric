@@ -1,4 +1,5 @@
 const fs = require('fs')
+const log = require('single-line-log').stdout;
 
 const file = fs.readFile("./lyric.txt", (err,data)=>{
     if(err) {
@@ -21,7 +22,8 @@ function printLyric(lyric){
       let content = matches[4]
       let time = minute*60*1000 + second*1000 + millsecond
       setTimeout(function(){
-        console.log(content)
+        log(content)
+        log.clear()
       },time)
     }
   }
