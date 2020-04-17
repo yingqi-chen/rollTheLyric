@@ -1,13 +1,13 @@
 # rollTheLyric
 
-##Introduction
+## Introduction
 
 Use Node's readFile API and setTimeOut to write a small program to imitate lyric rolling in music app.
 
-##Development
+## Development
 Use `single-line-log` package to log out lyric so that when the new one pops out, the previous one will be gone. 
 
-##Usage: 
+## Usage: 
 
 1. Fork the repo and cd into the directory. 
 2. Find a lrc file that has time format like: "[mm:ss:ms]"
