@@ -4,7 +4,7 @@
   "description": "se Node's readFile API and setTimeOut to write a small program to imitate lyric rolling in music app.",
   "main": "rolling.js",
   "scripts": {
-    "test": "test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
   "homepage": "https://github.com/chanwkkk/rollTheLyric#readme",
   "dependencies": {
     "single-line-log": "^1.1.2"
+  },
+  "devDependencies": {
+    "jest": "^25.3.0"
   }
 }
