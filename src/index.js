@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { start } = require("./lib")
+const { start } = require("./start")
 
 
 const file = fs.readFile("../data/lyric.txt", (err,data)=>{
