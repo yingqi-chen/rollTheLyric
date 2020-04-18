@@ -1,5 +1,11 @@
 const fs = require('fs')
 const log = require('single-line-log').stdout;
+const readline = require("readline")
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 const file = fs.readFile("./lyric.txt", (err,data)=>{
   if(err) {
@@ -10,9 +16,8 @@ const file = fs.readFile("./lyric.txt", (err,data)=>{
 })
 
 function start(lyric){
-  process.stdout.write("Do you want to see all the lyric(compard to one line each time)? Y/N \n")
-  
-  process.stdin.on("data", data=>{
+   
+  const questionAnswered = data =>{
     let answer = data.toString().trim().toUpperCase()
     if (answer !== "Y" && answer !=="N"){
       console.log("Not the answer I want.")
@@ -20,8 +25,14 @@ function start(lyric){
     }else{
       printLyric(answer,lyric)
     }
-  })
+  }
+
+  rl.question("Do you want to see all the lyric(compard to one line each time)? Y/N \n", questionAnswered)
+
+
 }
+
+
 
 printLyric = (answer, lyric) =>{
   console.log("Printing the Lyric...")
